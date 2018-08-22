@@ -47,7 +47,7 @@ class Role(models.Model):
 
 
 class Contractor(models.Model):
-    contact = models.OneToOneField(ContractorContactDetails)
+    contact = models.OneToOneField(ContractorContactDetails, on_delete=models.CASCADE)
     skills = models.ManyToManyField(Skill)
     cscs_card_number = models.IntegerField()
     cscs_card_url = models.URLField()  # upload to S3
@@ -60,9 +60,10 @@ class Contractor(models.Model):
 
 
 class Location(models.Model):
+    # Job location
     description = models.TextField()
     postcode = models.TextField(max_length=9)
-    role = models.ForeignKey(Role)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
 
 
 class Hirer(models.Model):
@@ -72,7 +73,7 @@ class Hirer(models.Model):
 
 class Agreement(models.Model):
     date = models.DateField()
-    company = models.ForeignKey(Hirer)
+    company = models.ForeignKey(Hirer, on_delete=models.CASCADE)
     pdf_agreement = models.URLField()  # upload to S3
     rate = models.IntegerField()
 
