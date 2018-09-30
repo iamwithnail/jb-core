@@ -1,0 +1,78 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+     <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">JibJar Construction Limited
+        <small>Dashboard</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="index.html">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+
+      <!-- Content Row -->
+      <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-lg-3 mb-4">
+          <div class="list-group">
+            <a href="index.html" class="list-group-item-info">Current Roles </a>
+            <a href="about.html" class="list-group-item">  Haringay A <span class="badge">5</span> </a>
+            <a href="services.html" class="list-group-item">Haringay B <span class="badge">3</span></a>
+            <a href="contact.html" class="list-group-item">Southwark A  <span class="badge">1</span></a>
+            <a href="portfolio-1-col.html" class="list-group-item-info">Previous Roles</a>
+            <a href="portfolio-2-col.html" class="list-group-item">Southark 1</a>
+            <a href="portfolio-3-col.html" class="list-group-item">Lambeth 2</a>
+          </div>
+        </div>
+          {% block match_content %}
+        <!-- Content Column -->
+        <div class="col-lg-9 mb-4">
+          <h2>Summary Content</h2>
+        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> New match on Haringay A - Richard Aldrich, Slinger
+                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-twitter fa-fw"></i> New applicant on Haringay B- Malky Pryor, Labourer
+                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-envelope fa-fw"></i> Request sent to Jeff Stelling for Haringay A
+                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-tasks fa-fw"></i>  Request sent to Andy Balham for Haringay B
+                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    </span>
+                                </a>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+        </div>
+          {% endblock match_content %}
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+{% endblock %}

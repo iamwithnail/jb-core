@@ -63,7 +63,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    #'crispy_forms',
+    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
