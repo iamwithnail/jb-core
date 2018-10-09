@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+import os
 
 ROOT_DIR = environ.Path(__file__) - 3  # (jobsolutely/config/settings/base.py - 3 = jobsolutely/)
 APPS_DIR = ROOT_DIR.path('jobsolutely')
@@ -25,7 +26,8 @@ DEBUG = env.bool('DJANGO_DEBUG', False)
 TIME_ZONE = 'UTC'
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
-# https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+# https://docs.djangoproject.com/en/dev/ref/settings/#sbite-id
+# https://docs.djangoproject.com/en/dev/ref/settings/#sbite-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
 USE_I18N = True
@@ -38,11 +40,15 @@ USE_TZ = True
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': env.db('DATABASE_URL', default='postgres://jobsolutely:jobsolutely@localhost/jobsolutely'),
+#}
+#DATABASES['default']['ATOMIC_REQUESTS'] = True
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///jobsolutely'),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+    }
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-
 # URLS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -101,7 +107,7 @@ LOGIN_URL = 'account_login'
 # PASSWORDS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#password-hashers
-PASSWORD_HASHERS = [
+PASSWORD_HASHERS =[
     # https://docs.djangoproject.com/en/dev/topics/auth/passwords/#using-argon2-with-django
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
