@@ -1,3 +1,4 @@
+
 Jobsolutely
 ===========
 
@@ -7,6 +8,16 @@ Jobsolutely recruitment
      :target: https://github.com/pydanny/cookiecutter-django/
      :alt: Built with Cookiecutter Django
 
+Setup
+--------
+Clone repo 
+Install virtualenv
+`cd jb-core`
+`virtualenv env --python=python3`
+`source env/bin/activate`
+`pip install -r requirements.txt`
+`python manage.py migrate`
+`python manage.py runserver`
 
 Settings
 --------
