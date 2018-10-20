@@ -14,6 +14,14 @@ class ContactDetails(models.Model):
     postcode = models.CharField(max_length=30)
     email = models.EmailField()
 
+    def save(self, *args, **kwargs):
+        # create the contractor on save so we don't have orphaned contact details.
+        if not self.contractor:
+            Contractor(contact=self).save()
+
+            self.image_small = SimpleUploadedFile(name, small_pic)
+        super(Model, self).save(*args, **kwargs)
+
 
 class Skill(models.Model):
     description = models.TextField()
@@ -23,7 +31,11 @@ class Skill(models.Model):
 class ContractorContactDetails(ContactDetails):
     field = models.TextField()
     name = models.TextField()
-
+    def __str__(self):
+        return '{} {}'.format(
+            self.name,
+            self.town
+        )
 
 class HirerContactDetails(ContactDetails):
     invoice_contact = models.EmailField()
@@ -40,8 +52,12 @@ RATE_CHOICES = (
 
 
 class Role(models.Model):
-    title = models.TextField()
-    rate = models.IntegerField()
+    title = models.TextField(default='')
+    rate = models.DecimalField(
+        default='0.00',
+        decimal_places=2,
+        max_digits=8
+        )
     rate_type = models.IntegerField(choices=RATE_CHOICES)
     skills = models.ManyToManyField(Skill)
 
@@ -49,8 +65,8 @@ class Role(models.Model):
 class Contractor(models.Model):
     contact = models.OneToOneField(ContractorContactDetails, on_delete=models.CASCADE)
     skills = models.ManyToManyField(Skill)
-    cscs_card_number = models.IntegerField()
-    cscs_card_url = models.URLField()  # upload to S3
+    cscs_card_number = models.IntegerField(default=0000)
+    cscs_card_url = models.URLField(null=True)  # upload to S3
 
     def skill_match(self):
         return Role.objects.filter(role__skills__in=self.skills)
@@ -61,8 +77,8 @@ class Contractor(models.Model):
 
 class Location(models.Model):
     # Job location
-    description = models.TextField()
-    postcode = models.TextField(max_length=9)
+    description = models.TextField(default='')
+    postcode = models.TextField(max_length=9, default='XX99 XX99')
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
 
 
