@@ -47,6 +47,7 @@ USE_TZ = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(ROOT_DIR, 'db.sqlite3'),
     }
 }
 # URLS
@@ -66,6 +67,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
+    'jet',
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [

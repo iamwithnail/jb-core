@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from core.views import ContractorContactView
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -29,6 +30,15 @@ urlpatterns = [
         name="about",
     ),
 
+    path(
+        "contractor/contractor-signup/",
+        ContractorContactView.as_view(),
+        name="contractor-signup",
+
+
+    ),
+
+    path(r'jet/', include('jet.urls', 'jet')),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
